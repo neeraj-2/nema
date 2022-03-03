@@ -17,10 +17,12 @@ import {
   View,
 } from 'react-native';
 
+import Loader from './components/Loader/Loader';
+
 const App = () => {
   return (
     <View style={styles.container}>
-      <Text>Nema</Text>
+      <Loader />
     </View>
   );
 };
