@@ -1,39 +1,45 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
+import React, {useEffect} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import OnboardingScreen from './screens/OnboardingScreen';
+import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
+//loader
+import Loader from './screens/Loader';
 
-import Loader from './components/Loader/Loader';
+const AppStack = createStackNavigator();
 
-const App = () => {
+
+export default function App() {
+
+  //create ShowLoader hook
+  const [showLoader, setShowLoader] = React.useState(true);
+
+  //show loader component for 3000ms
+  useEffect(() => {
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 8000);
+  }, []);
+
+
+
   return (
-    <View style={styles.container}>
-      <Loader />
-    </View>
+    <NavigationContainer>
+      <AppStack.Navigator>
+
+        {/* show Loder if ShowLoader is true */}
+        {showLoader ? <AppStack.Screen name="App is Loading...." component={Loader} /> : null}
+        <AppStack.Screen name="Nema: Let's Collaborate" component={OnboardingScreen} />
+
+        <AppStack.Screen name="NEMA" component={OnboardingScreen} />
+
+        <AppStack.Screen name="Login" component={LoginScreen} />
+        <AppStack.Screen name="Signup" component={SignupScreen} />
+      </AppStack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default App;
+}
