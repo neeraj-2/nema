@@ -10,7 +10,7 @@ import {
   Image,
   Platform,
   StyleSheet,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
@@ -21,19 +21,16 @@ const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-//   const {login, googleLogin, fbLogin} = useContext(AuthContext);
+  //   const {login, googleLogin, fbLogin} = useContext(AuthContext);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image
-        source={require('../assets/nema.png')}
-        style={styles.logo}
-      />
+      <Image source={require('../assets/nema.png')} style={styles.logo} />
       <Text style={styles.text}>NEMA</Text>
 
       <FormInput
         labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
+        onChangeText={userEmail => setEmail(userEmail)}
         placeholderText="Email"
         iconType="user"
         keyboardType="email-address"
@@ -43,7 +40,7 @@ const LoginScreen = ({navigation}) => {
 
       <FormInput
         labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
+        onChangeText={userPassword => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
         secureTextEntry={true}
@@ -99,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 50
+    paddingTop: 50,
   },
   logo: {
     height: 150,
