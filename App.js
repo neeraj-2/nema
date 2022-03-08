@@ -12,9 +12,7 @@ import Loader from './screens/Loader';
 
 const AppStack = createStackNavigator();
 
-
 export default function App() {
-
   //create ShowLoader hook
   const [showLoader, setShowLoader] = React.useState(true);
 
@@ -25,15 +23,17 @@ export default function App() {
     }, 8000);
   }, []);
 
-
-
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-
         {/* show Loder if ShowLoader is true */}
-        {showLoader ? <AppStack.Screen name="App is Loading...." component={Loader} /> : null}
-        <AppStack.Screen name="Nema: Let's Collaborate" component={OnboardingScreen} />
+        {showLoader ? (
+          <AppStack.Screen name="App is Loading...." component={Loader} />
+        ) : null}
+        <AppStack.Screen
+          name="Nema: Let's Collaborate"
+          component={OnboardingScreen}
+        />
 
         <AppStack.Screen name="NEMA" component={OnboardingScreen} />
 
