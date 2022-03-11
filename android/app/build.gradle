@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 
+
 import com.android.build.OutputFile
 
 /**
@@ -230,7 +231,8 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'Ionicons.ttf', 'AntDesign.ttf', 'FontAwesome.ttf'] // Name of the font files you want to copy
+    iconFontNames: [ 'Ionicons.ttf', 'AntDesign.ttf', 'FontAwesome.ttf', 'MaterialCommunityIcons.ttf','FontAwesome5.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply plugin: 'com.google.gms.google-services' // <- Add this line
