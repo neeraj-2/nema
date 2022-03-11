@@ -1,7 +1,6 @@
-# AwesomeProject
+# nema
 
-
-my-first-ever-react-native-project
+A video-streaming-app
 
 # supports:
 
