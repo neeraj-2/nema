@@ -7,6 +7,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import HomeScreen from '../screens/HomeScreen';
+// import ChatScreen from '../screens/ChatScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import AddPostScreen from '../screens/AddPostScreen';
+import MessageScreen from '../screens/MessageScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const FeedStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="NEMA"
+      name="RN Social"
       component={HomeScreen}
       options={{
         headerTitleAlign: 'center',
@@ -40,7 +45,7 @@ const FeedStack = ({navigation}) => (
         ),
       }}
     />
-    {/* <Stack.Screen
+    <Stack.Screen
       name="AddPost"
       component={AddPostScreen}
       options={{
@@ -58,8 +63,8 @@ const FeedStack = ({navigation}) => (
           </View>
         ),
       }}
-    /> */}
-    {/* <Stack.Screen
+    />
+    <Stack.Screen
       name="HomeProfile"
       component={ProfileScreen}
       options={{
@@ -77,49 +82,42 @@ const FeedStack = ({navigation}) => (
           </View>
         ),
       }}
-    /> */}
+    />
   </Stack.Navigator>
 );
 
-// const MessageStack = ({navigation}) => (
-//   <Stack.Navigator>
-//     <Stack.Screen name="Messages" component={MessagesScreen} />
-//     <Stack.Screen
-//       name="Chat"
-//       component={ChatScreen}
-//       options={({route}) => ({
-//         title: route.params.userName,
-//         headerBackTitleVisible: false,
-//       })}
-//     />
-//   </Stack.Navigator>
-// );
+const MessageStack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen name="Messages" component={MessageScreen} />
+    
+  </Stack.Navigator>
+);
 
-// const ProfileStack = ({navigation}) => (
-//   <Stack.Navigator>
-//     <Stack.Screen
-//       name="Profile"
-//       component={ProfileScreen}
-//       options={{
-//         headerShown: false,
-//       }}
-//     />
-//     <Stack.Screen
-//       name="EditProfile"
-//       component={EditProfileScreen}
-//       options={{
-//         headerTitle: 'Edit Profile',
-//         headerBackTitleVisible: false,
-//         headerTitleAlign: 'center',
-//         headerStyle: {
-//           backgroundColor: '#fff',
-//           shadowColor: '#fff',
-//           elevation: 0,
-//         },
-//       }}
-//     />
-//   </Stack.Navigator>
-// );
+const ProfileStack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="EditProfile"
+      component={EditProfileScreen}
+      options={{
+        headerTitle: 'Edit Profile',
+        headerBackTitleVisible: false,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+  </Stack.Navigator>
+);
 
 const AppStack = () => {
   const getTabBarVisibility = (route) => {
@@ -153,8 +151,8 @@ const AppStack = () => {
           ),
         })}
       />
-      {/* <Tab.Screen
-        name="Messages"
+      <Tab.Screen
+        name="ChatBot"
         component={MessageStack}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
@@ -170,9 +168,9 @@ const AppStack = () => {
             />
           ),
         })}
-      /> */}
-      {/* <Tab.Screen
-        name="Profile"
+      />
+      <Tab.Screen
+        name="User Profile"
         component={ProfileStack}
         options={{
           // tabBarLabel: 'Home',
@@ -180,7 +178,7 @@ const AppStack = () => {
             <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };
