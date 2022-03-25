@@ -3,20 +3,19 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable prettier/prettier */
 
-
 import React, {useContext, useState} from 'react';
 import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-//   const {register} = useContext(AuthContext);
+  const {signup} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -24,7 +23,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormInput
         labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
+        onChangeText={userEmail => setEmail(userEmail)}
         placeholderText="Email"
         iconType="user"
         keyboardType="email-address"
@@ -34,7 +33,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormInput
         labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
+        onChangeText={userPassword => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
         secureTextEntry={true}
@@ -42,7 +41,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormInput
         labelValue={confirmPassword}
-        onChangeText={(userPassword) => setConfirmPassword(userPassword)}
+        onChangeText={userPassword => setConfirmPassword(userPassword)}
         placeholderText="Confirm Password"
         iconType="lock"
         secureTextEntry={true}
@@ -50,8 +49,8 @@ const SignupScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign Up"
-        // onPress={() => register(email, password)}
-        onPress={() => alert('You are registered')}
+        onPress={() => signup(email, password)}
+        // onPress={() => alert('You are registered')}
       />
 
       <View style={styles.textPrivate}>
@@ -78,7 +77,7 @@ const SignupScreen = ({navigation}) => {
             backgroundColor="#e6eaf4"
             onPress={() => {}}
           />
-    
+
           <SocialButton
             buttonTitle="Sign Up with Google"
             btnType="google"

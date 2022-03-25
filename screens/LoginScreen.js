@@ -15,13 +15,36 @@ import {
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigation/AuthProvider';
+
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+
+const signInWithGoogle = async () => {
+  // Get the users ID token
+  const {idToken} = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  const user_sign_in = auth().signInWithCredential(googleCredential);
+
+  user_sign_in.then(() => {
+    alert('Brehh');
+    // navigation.navigate('Home');
+  });
+};
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  //   const {login, googleLogin, fbLogin} = useContext(AuthContext);
+  GoogleSignin.configure({
+    webClientId:
+      '77315345904-apjcgf0lmoqainphnotr6s56sj3hp3p0.apps.googleusercontent.com',
+  });
+  const {login, logout} = useContext(AuthContext);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -48,8 +71,11 @@ const LoginScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign In"
-        // onPress={() => {}}
-        onPress={() => alert('You are logged in')}
+        onPress={() => {
+          login(email, password);
+          alert('You are logged in');
+        }}
+        // onPress={() => alert('You are logged in')}
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
@@ -72,8 +98,8 @@ const LoginScreen = ({navigation}) => {
             btnType="google"
             color="#de4d41"
             backgroundColor="#f5e7ea"
-            // onPress={() => googleLogin()}
-            onPress={() => {}}
+            onPress={() => signInWithGoogle()}
+            // onPress={() => {}}
           />
         </View>
       ) : null}

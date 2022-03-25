@@ -11,4 +11,8 @@ const Loader = () => {
   );
 };
 
+// const SplashScreen = () => {
+//   return <Loader />;
+// };
+
 export default Loader;

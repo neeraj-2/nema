@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "77315345904",
+    "project_id": "nema-9147c",
+    "storage_bucket": "nema-9147c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77315345904:android:8bc8f27c6eabdec407e135",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77315345904-88af8pe0ar15pbno8f12qcs6ej6o98aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.awesomeproject",
+            "certificate_hash": "9373eebc9a4b4bfd88052a162ed9b97e92e2ac2e"
+          }
+        },
+        {
+          "client_id": "77315345904-l7bo4uln8kaftl8k1n6l5jh8d8un7ipm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.awesomeproject",
+            "certificate_hash": "8de6001ae40f55903e9ec782537ec3929ce678ef"
+          }
+        },
+        {
+          "client_id": "77315345904-apjcgf0lmoqainphnotr6s56sj3hp3p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEp5X0jekaMa8X1_mE06AqLELT7LlT7vM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77315345904-apjcgf0lmoqainphnotr6s56sj3hp3p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
