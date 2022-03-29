@@ -17,47 +17,45 @@ import {
 } from 'react-native-webrtc';
 
 const CallScreen = ({navigation}) => {
-  const [mediaStream, setMediaStream] = useState(null);
-
   const constraints = {
     audio: true,
-    video: {
-      mandatory: {
-        minWidth: 500,
-        minHeight: 300,
-        minFrameRate: 30,
-      },
-      //   facingMode,
-      //   optional: videoSourceId ? [{sourceId: videoSourceId}] : [],
-    },
+    video: true,
   };
+
+  const [localStream, setLocalStream] = useState(null);
 
   useEffect(() => {
     async function enableStream() {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        setMediaStream(stream);
+        // alert('hey');
+        const stream = await mediaDevices.getUserMedia(constraints);
+        setLocalStream(stream);
+        if (localStream == null) {
+          alert('local stream is null');
+        }
       } catch (err) {
         // Removed for brevity
+        alert('uff');
       }
     }
-    if (!mediaStream) {
+
+    if (!localStream) {
       enableStream();
     } else {
       return function cleanup() {
-        mediaStream.getTracks().forEach(track => {
+        localStream.getTracks().forEach(track => {
           track.stop();
         });
       };
     }
-  }, [mediaStream, constraints]);
+  }, [localStream, constraints]);
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.body}>
-        <Text>{mediaStream}</Text>
-        {/* <RTCView streamURL={mediaStream.toURL()} /> */}
+        <Text>Breh</Text>
+        {/* <RTCView /> */}
       </SafeAreaView>
     </>
   );
