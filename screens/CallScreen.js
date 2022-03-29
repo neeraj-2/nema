@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Button,
   SafeAreaView,
@@ -9,40 +9,55 @@ import {
   StatusBar,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {mediaDevices, RTCView} from 'react-native-webrtc';
+import {
+  mediaDevices,
+  RTCView,
+  MediaStream,
+  MediaStreamConstraints,
+} from 'react-native-webrtc';
 
 const CallScreen = ({navigation}) => {
-  const [stream, setStream] = useState(null);
-  const start = async () => {
-    console.log('start');
-    if (!stream) {
-      let s;
+  const [mediaStream, setMediaStream] = useState(null);
+
+  const constraints = {
+    audio: true,
+    video: {
+      mandatory: {
+        minWidth: 500,
+        minHeight: 300,
+        minFrameRate: 30,
+      },
+      //   facingMode,
+      //   optional: videoSourceId ? [{sourceId: videoSourceId}] : [],
+    },
+  };
+
+  useEffect(() => {
+    async function enableStream() {
       try {
-        s = await mediaDevices.getUserMedia({video: true});
-        setStream(s);
-      } catch (e) {
-        // alert('Oops');
-        console.error(e);
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        setMediaStream(stream);
+      } catch (err) {
+        // Removed for brevity
       }
     }
-  };
-  const stop = () => {
-    console.log('stop');
-    if (stream) {
-      stream.release();
-      setStream(null);
+    if (!mediaStream) {
+      enableStream();
+    } else {
+      return function cleanup() {
+        mediaStream.getTracks().forEach(track => {
+          track.stop();
+        });
+      };
     }
-  };
+  }, [mediaStream, constraints]);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.body}>
-        {/* {stream && <RTCView streamURL={stream.toURL()} style={styles.stream} />}
-        <View style={styles.footer}>
-          <Button title="Start" onPress={start} />
-          <Button title="Stop" onPress={stop}  />
-        </View> */}
-        <Text>Brah</Text>
+        <Text>{mediaStream}</Text>
+        {/* <RTCView streamURL={mediaStream.toURL()} /> */}
       </SafeAreaView>
     </>
   );
