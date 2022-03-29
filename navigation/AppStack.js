@@ -12,6 +12,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import AddPostScreen from '../screens/AddPostScreen';
 import MessageScreen from '../screens/MessageScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import CallScreen from '../screens/CallScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,9 +20,10 @@ const Tab = createBottomTabNavigator();
 const FeedStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="RN Social"
+      name="Sweet Home Alabama"
       component={HomeScreen}
       options={{
+        headerShown: false,
         headerTitleAlign: 'center',
         headerTitleStyle: {
           color: '#2e64e5',
@@ -32,55 +34,45 @@ const FeedStack = ({navigation}) => (
           shadowColor: '#fff',
           elevation: 0,
         },
-        headerRight: () => (
-          <View style={{marginRight: 10}}>
-            <FontAwesome5.Button
-              name="plus"
-              size={22}
-              backgroundColor="#fff"
-              color="#2e64e5"
-              onPress={() => navigation.navigate('AddPost')}
-            />
-          </View>
-        ),
+        // headerRight: () => (
+        //   <View style={{marginRight: 10}}>
+        //     <FontAwesome5.Button
+        //       name="plus"
+        //       size={22}
+        //       backgroundColor="#fff"
+        //       color="#2e64e5"
+        //       onPress={() => navigation.navigate('AddPost')}
+        //     />
+        //   </View>
+        // ),
       }}
     />
     <Stack.Screen
-      name="AddPost"
-      component={AddPostScreen}
+      name="CallScreen"
+      component={CallScreen}
       options={{
-        title: '',
+        headerShown: false,
         headerTitleAlign: 'center',
-        headerStyle: {
-          backgroundColor: '#2e64e515',
-          shadowColor: '#2e64e515',
-          elevation: 0,
+        headerTitleStyle: {
+          color: '#2e64e5',
+          fontFamily: 'Kufam-SemiBoldItalic',
+          fontSize: 18,
         },
-        headerBackTitleVisible: false,
-        headerBackImage: () => (
-          <View style={{marginLeft: 15}}>
-            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
-          </View>
-        ),
-      }}
-    />
-    <Stack.Screen
-      name="HomeProfile"
-      component={ProfileScreen}
-      options={{
-        title: '',
-        headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: '#fff',
           shadowColor: '#fff',
           elevation: 0,
         },
-        headerBackTitleVisible: false,
-        headerBackImage: () => (
-          <View style={{marginLeft: 15}}>
-            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
-          </View>
-        ),
+        // headerRight: () => (
+        //   <View style={{marginRight: 10}}>
+        //     <FontAwesome5.Button
+        //       name="plus"
+        //       size={22}
+        //       backgroundColor="#fff"
+        //       color="#2e64e5"
+        //       onPress={() => navigation.navigate('AddPost')}
+        //     />
+        //   </View>
+        // ),
       }}
     />
   </Stack.Navigator>
@@ -89,7 +81,6 @@ const FeedStack = ({navigation}) => (
 const MessageStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen name="Messages" component={MessageScreen} />
-    
   </Stack.Navigator>
 );
 
@@ -120,7 +111,7 @@ const ProfileStack = ({navigation}) => (
 );
 
 const AppStack = () => {
-  const getTabBarVisibility = (route) => {
+  const getTabBarVisibility = route => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
       : '';
