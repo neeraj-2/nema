@@ -40,6 +40,7 @@
     "react-native-skeleton-placeholder": "^5.0.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-voice": "^0.3.0",
+    "react-native-webrtc": "^1.98.0",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "styled-components": "^5.3.3"
   },
