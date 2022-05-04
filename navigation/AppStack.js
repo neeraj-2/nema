@@ -47,7 +47,8 @@ const FeedStack = ({navigation}) => (
         // ),
       }}
     />
-    <Stack.Screen
+
+    {/* <Stack.Screen
       name="CallScreen"
       component={CallScreen}
       options={{
@@ -74,7 +75,7 @@ const FeedStack = ({navigation}) => (
         //   </View>
         // ),
       }}
-    />
+    /> */}
   </Stack.Navigator>
 );
 
@@ -110,18 +111,7 @@ const ProfileStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
-const AppStack = () => {
-  const getTabBarVisibility = route => {
-    const routeName = route.state
-      ? route.state.routes[route.state.index].name
-      : '';
-
-    if (routeName === 'Chat') {
-      return false;
-    }
-    return true;
-  };
-
+function Tabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -146,7 +136,7 @@ const AppStack = () => {
         name="ChatBot"
         component={MessageStack}
         options={({route}) => ({
-          tabBarVisible: getTabBarVisibility(route),
+          // tabBarVisible: getTabBarVisibility(route),
           // Or Hide tabbar when push!
           // https://github.com/react-navigation/react-navigation/issues/7677
           // tabBarVisible: route.state && route.state.index === 0,
@@ -171,6 +161,38 @@ const AppStack = () => {
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+const AppStack = () => {
+  const getTabBarVisibility = route => {
+    const routeName = route.state
+      ? route.state.routes[route.state.index].name
+      : '';
+
+    if (routeName === 'Chat') {
+      return false;
+    }
+    return true;
+  };
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomeTabs" component={Tabs} />
+      <Stack.Screen
+        name="CallScreen"
+        component={CallScreen}
+        options={{
+          title: 'Create a Stream',
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+            shadowOpacity: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 
